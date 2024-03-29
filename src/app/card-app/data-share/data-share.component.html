@@ -1,0 +1,52 @@
+<div class="container mt-3">
+    <img [src]="userProfile" alt="" class="img-userProfile">
+    <div class="text-center">
+        <h3 class="bg-color">Emp-Register App</h3>
+    </div>
+    <form [formGroup]="formData" (ngSubmit)="submitData()">
+        <div class="card mt-2 bg-dark text-white">
+            <div class="card-body">
+                <input type="text" class="form-control" placeholder="First-name" formControlName="firstname">
+            </div>
+            <div class="card-body">
+                <input type="text" class="form-control" placeholder="Last-name" formControlName="lastname">
+            </div>
+            <div class="card-body">
+                <input type="password" class="form-control" placeholder="Password" formControlName="password">
+            </div>
+            <div class="card-body" *ngIf="display">
+                <button class="btn btn-primary" type="submit">Submit</button> ||
+                <button (click)="CancalData()" type="button" class="btn btn-warning">Cancel</button>
+            </div>
+            <div class="card-body" *ngIf="!display">
+                <button (click)="OnSave()" class="btn btn-secondary btn-md" type="button">SaveBD</button>
+            </div>
+        </div>
+    </form>
+    <hr>
+    <table class="table table-hover"> 
+        <thead>
+            <tr>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Password</th>
+                <th>Edit-Data</th>
+                <th>Delete-Data</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let d of valueData ; let i = index">
+                <td>{{d.firstname}}</td>
+                <td>{{d.lastname}}</td>
+                <td>{{d.password}}</td>
+                <td>
+                    <button (click)="OnEdite(i)" class="btn btn-warning btn-md" type="button"><i class="bi bi-pencil-square"></i></button>
+                </td>
+                <td>
+                    <button (click)="Ondelete(i)" class="btn btn-danger btn-md" type="button"><i class="bi bi-trash3"></i></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<!-- {{valueData | json}} -->
